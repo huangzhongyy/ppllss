@@ -1,0 +1,50 @@
+server:
+  servlet:
+    context-path: /boot
+
+mybatis-plus:
+  typeAliasesPackage: com.cssls.pojo
+  configuration:
+    auto-mapping-behavior: full
+    use-generated-keys: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+      db-config:
+        #主键类型  id_worker:"数据库ID自增" auto+@TableId:"可以获得主键值"
+        id-type: auto
+        #字段策略 0:"忽略判断",1:"非 NULL 判断"),2:"非空判断"
+        field-strategy: not_empty
+        #驼峰下划线转换
+        column-underline: true
+        #数据库大写下划线转换
+        #capital-mode: true
+        #逻辑删除配置
+        logic-delete-value: 0
+        logic-not-delete-value: 1
+        db-type: mysql
+      refresh: true
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql:///guanli?serverTimezone=UTC
+    username: root
+    password: 125927
+
+
+
+  jackson:
+    date-format: yyyy-MM-dd HH:mm
+    time-zone: GMT+8
+
+  thymeleaf:
+    encoding: UTF-8
+    #开发时关闭缓存,不然没法看到实时页面
+    cache: false
+
+#静态文件请求匹配方式
+  mvc:
+    static-path-pattern: /**
+  #修改默认的静态寻址资源目录
+  resources:
+    static-locations: classpath:/templates/,classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
